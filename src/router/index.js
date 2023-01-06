@@ -31,6 +31,11 @@ const routes = [
     name: 'mesiExample2',
     component: () => import(/* webpackChunkName: "mesiExample2" */ '../views/mesiExample/Example2MesiView.vue')
   },
+  {
+    path: '/TestSam',
+    name: 'testSam',
+    component: () => import(/* webpackChunkName: "testsam" */ '../views/mesiExample/TestSam.vue')
+  },
 ]
 
 // import Vue from 'vue';
