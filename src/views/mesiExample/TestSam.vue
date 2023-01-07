@@ -7,12 +7,10 @@
         dense
         app
       >
-        <v-btn icon>
-          <nuxt-link class="white--" to="https://artjuice.net/10-sites-de-polices-decriture-gratuites-pour-les-graphistes-et-webdesigners/">
+        <v-btn icon href="https://www.youtube.com/watch?v=Q601mueWcmw" target="_blank">
             <v-icon color="black">
               mdi-home
-            </v-icon>
-          </nuxt-link>
+            </v-icon>         
         </v-btn>
   
         <v-toolbar-title>ARANEA</v-toolbar-title>
@@ -116,19 +114,25 @@
         justify="center"
         no-gutters
       >
-        <v-btn
-          v-for="link in links"
-          :key="link"
-          color="white"
-          text
-          rounded
-          class="my-2"
-          icon
-          
-        >
+      <v-btn
+        v-for="link in links"
+        :key="link"
+        color="white"
+        text
+        rounded
+        class="my-2"
+      >
+        {{ link }}
+      </v-btn>
+        <v-btn color="white" rounded class="my-2" icon href="https://www.twitter.com" target="_blank">
         <v-icon size="24px">
           mdi-twitter
           </v-icon>
+        </v-btn>
+        <v-btn color="white" rounded class="my-2" icon href="https://www.instagram.com" target="_blank">
+            <v-icon >
+              mdi-instagram
+            </v-icon>         
         </v-btn>
         <v-col
           class="primary lighten-2 py-4 text-center white--text"
@@ -158,9 +162,6 @@
       links: [
       'Home',
       'About Us',
-      'Team',
-      'Services',
-      'Blog',
       'Contact Us',
     ],
     }),
