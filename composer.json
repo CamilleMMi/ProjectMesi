@@ -1,0 +1,7 @@
+{
+    "require": {
+        "bcosca/fatfree-core": "^3.8",
+        "ikkez/f3-cortex": "1.*",
+        "fzaninotto/faker": "^1.9"
+    }
+}
