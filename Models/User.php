@@ -12,6 +12,13 @@ class User extends Model
         parent::__construct();
     }
 
+    const ROLE = [
+        'admin',
+        'artist',
+        'client',
+        'visitor'
+    ];
+
     protected $table = 'user';
     protected $fieldConf = [
         'email' => [

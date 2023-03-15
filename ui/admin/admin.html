@@ -78,8 +78,9 @@
 
 <script>
 function formatterUser(value, row, index, field) {
-    const buttons = `<a href="/admin/${row._id}/info" class="btn btnEdit btn-info"><i class="bi bi-search"></i></a>
-                     <a href="/admin/${row._id}/edit" class="btn btnEdit btn-warning"><i class="bi bi-pencil-square"></i></a>`;
+  //href="/admin/${row._id}/info"
+    const buttons = `<a href="#" class="btn btnEdit btn-info"><i class="bi bi-search"></i></a>
+                     <a href="#" class="btn btnEdit btn-warning"><i class="bi bi-pencil-square"></i></a>`;
     const activateButton = row.compte_actif != 0 ? `<a href="/dashboard/${row._id}/updateStatut" class="btn btn-danger delete"><i class="bi bi-trash-fill"></i></a>` : `<a href="/dashboard/${row._id}/updateStatut" class="btn btn-success delete"><i class="bi bi-plus-circle-fill"></i></a>`;
 
     return `<div class="btn-group" role="group" aria-label="Basic example"> ${buttons} ${activateButton}</div>`;

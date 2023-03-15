@@ -3,16 +3,15 @@
 namespace Models;
 
 use DB\SQL\Schema;
-use Repositories\DocumentRepository;
 
-class Pictures extends Model
+class Posts extends Model
 {
 
     public function __construct(){
         parent::__construct();
     }
 
-    protected $table = 'pictures';
+    protected $table = 'posts';
     protected $fieldConf = [
         'user' => [
             'belongs-to-one' => 'Models\User',
