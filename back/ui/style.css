@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+}
+
+nav {
+    background-color: black;
+    padding: 1em;
+}
+
+nav > a {
+    color: white;
+}
+
+nav > a:first-child {
+    padding-right: 3em;
+    color: #03BEC1;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list > div {
+    flex: 1 0 21%;
+    margin: 1em;
+}
+
+legend {
+    background-color: black;
+    color: white;
+    padding: 0.3em 2em;
+}

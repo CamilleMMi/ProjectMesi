@@ -1,0 +1,45 @@
+#table_admins {
+    margin: 3em;
+}
+
+h1 {
+    background-color: black;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+.admin {
+    background-color: #FF5733 !important;
+    color: white;
+  }
+
+  .client {
+    background-color: #FFC300 !important;
+    color: white;
+  }
+
+  .artist {
+    background-color: #79CB03 !important;
+    color: white;
+  }
+
+  .visitor {
+    background-color: #03BEC1 !important;
+    color: white;
+  }
+
+  .inactif {
+    background-color: #9a001a !important;
+    color: white;
+    font-weight: bolder;
+  }
+
+  .actif {
+    background-color: #d3ff96 !important;
+  }
+
+  .btn-success {
+    background-color: #79CB03 !important;
+    border-color: #79CB03 !important;
+  }

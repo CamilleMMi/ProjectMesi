@@ -1,0 +1,19 @@
+<h1>Tout mes posts</h1>
+
+<check if="{{@posts}}">
+    <false><p style="color: grey">Vous n'avez pas encore poster quelque chose.</p></false>
+</check>
+<div class="list">
+    <repeat group="{{ @posts }}" value="{{ @post }}">
+        <div>
+            <check if="{{@post.picture}}">
+                <true><img src="../{{@post.picture}}" width="100" height="100"></true>
+            </check>
+            <h2>{{@post.title}}</h2>
+            <p>{{@post.description}}</p>
+            <p><small>Posté le {{@post.post_date}}</small></p>
+            <a href="/post/{{@post.id}}">Voir plus</a>
+            <hr>
+        </div>
+    </repeat>
+</div>
