@@ -24,7 +24,7 @@
             size="64"
           ></v-avatar>
   
-          <div>john@vuetifyjs.com</div>
+          <div>camillemichaudmeli@gmail.com</div>
         </v-sheet>
   
         <v-divider></v-divider>
@@ -99,10 +99,10 @@
         cards: ['Today', 'Yesterday'],
         drawer: null,
         links: [
-          ['mdi-inbox-arrow-down', 'Inbox'],
-          ['mdi-send', 'Send'],
-          ['mdi-delete', 'Trash'],
-          ['mdi-alert-octagon', 'Spam'],
+          ['mdi-inbox-arrow-down', 'Messages'],
+          ['mdi-plus', 'Publier'],
+          ['mdi-delete', 'Supprimer'],
+          ['mdi-account', 'Profil'],
         ],
       }),
     }

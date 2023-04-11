@@ -28,11 +28,9 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <nuxt-link to="loginHome">
-                                    <v-btn color="primary">
+                                    <v-btn to="/" color="primary">
                                         Déjà Inscrit
                                     </v-btn>
-                                </nuxt-link>
                                 <v-spacer />
                                 <v-btn color="primary">
                                     Inscrire
