@@ -33,7 +33,7 @@
         const fetchOperations = async() => {
             status.innerHTML = `<i style="color: blue">En cours...</i>`;
     
-            let response = await fetch('/upload_post',
+            let response = await fetch('/post/upload',
                 {
                     method: 'POST',
                     body: formdata

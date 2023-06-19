@@ -1,12 +1,3 @@
-<link href="/ui/style.css" rel="stylesheet" type="text/css">
-
-<nav>
-    <a href="/account">Aller sur mon compte</a>
-    <a href="/create_post">Créer un post</a>
-    <a href="/mygallery">Voir tous mes posts</a>
-    <a href="/logout">Déconnexion</a>
-</nav>
-
 <h1>Tout mes posts</h1>
 
 <?php if ($posts): ?>
@@ -21,8 +12,11 @@
             <h2><?= ($post['title']) ?></h2>
             <p><?= ($post['description']) ?></p>
             <p><small>Posté le <?= ($post['post_date']) ?></small></p>
-            <a href="/post/<?= ($post['id']) ?>">Voir plus</a>
-            <hr>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="/post/<?= ($post['id']) ?>" class="btn btn-info">Voir plus</a>
+                <a href="/post/<?= ($post['id']) ?>/edit" class="btn btn-warning">Modifier</a>
+                <a href="/post/<?= ($post['id']) ?>/delete" class="btn btn-danger">Supprimer</a>
+            </div>
         </div>
     <?php endforeach; ?>
 </div>

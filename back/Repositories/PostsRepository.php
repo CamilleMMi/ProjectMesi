@@ -10,9 +10,13 @@ class PostsRepository extends Repository {
     }
 
     public function getByIdAndUsername($postid, $username) {
-        return $this->exec("SELECT p.*, u.*
-                            FROM posts p INNER JOIN user u
-                            ON p.user = u.id
-                            WHERE u.username = ? AND p.id = ?", [$username, $postid]);
+        $this->exec("SELECT p.*, u.*
+                        FROM posts p INNER JOIN user u
+                        ON p.user = u.id
+                        WHERE u.username = ? AND p.id = ?", [$username, $postid]);
+    }
+
+    public function updatePostImage($postid, $newname) {
+        $this->exec("UPDATE posts SET picture = ? WHERE id = ?", [$newname, $postid]);
     }
 }

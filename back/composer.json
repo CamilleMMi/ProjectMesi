@@ -2,6 +2,9 @@
     "require": {
         "bcosca/fatfree-core": "^3.8",
         "ikkez/f3-cortex": "1.*",
-        "fzaninotto/faker": "^1.9"
+        "fzaninotto/faker": "^1.9",
+        "twig/twig": "^3.3",
+        "ikkez/f3-flash": "^1.0",
+        "voku/html-compress-twig": "^4.0"
     }
 }

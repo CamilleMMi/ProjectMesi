@@ -12,13 +12,17 @@
     <nav>
         <a href="/home">Home</a>
         <a href="/account">Aller sur mon compte</a>
-        <a href="/create_post">Créer un post</a>
+        <a href="/post/create">Créer un post</a>
         <a href="/mygallery">Voir tous mes posts</a>
         <a href="/logout">Déconnexion</a>
+        <a href="#" class="text-danger">Reporter</a>
+        <a class="text-white">Bienvenue {{@USER.pseudo}}</a>
     </nav>
 
     <include href="{{ @CONTENT|raw }}" />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.js"></script>
 </body>
 </html>
 

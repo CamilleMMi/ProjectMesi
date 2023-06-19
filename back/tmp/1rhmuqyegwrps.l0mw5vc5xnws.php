@@ -8,12 +8,12 @@
 
         <label for="photo_profile">Modifier la photo de profile</label>
         <input type="file" id="photo_profile" name="photo_profile">
-<br>
+        <br>
         <label for="email">Email</label>
         <input type="mail" id="email" name="email" value="<?= ($user['email']) ?>">
-<br>
+        <br>
         <a href="#">Modifier mon mot de passe</a>
-<br>
+        <br>
         <input type="submit" value="mettre à jour">
     </fieldset>
 </form>
