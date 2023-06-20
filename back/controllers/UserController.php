@@ -49,7 +49,7 @@ class UserController extends Controller {
     public function display(\Base $f3) {
         $user = UserRepository::instance()->getById($f3->USER->_id);
         $f3->set('user', $user);
-        $f3->set('CONTENT', '../ui/account.html');
+        $f3->set('CONTENT', '../ui/public/account.html');
         //$f3->set('CONTENTJS', 'views/home/home.js');
         echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
@@ -57,7 +57,7 @@ class UserController extends Controller {
     public function displayGallery(\Base $f3) {
         $posts = PostsRepository::instance()->find(["user = ?", $f3->USER->_id],["order"=>"post_date DESC"]);
         $f3->set('posts', $posts);
-        $f3->set('CONTENT', '../ui/gallery.html');
+        $f3->set('CONTENT', '../ui/public/gallery.html');
         //$f3->set('CONTENTJS', 'views/home/home.js');
         echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }

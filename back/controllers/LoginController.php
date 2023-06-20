@@ -59,10 +59,12 @@ class LoginController extends Controller {
 
     // DISPLAY
     public function displayLogin(\Base $f3) {
-        echo \Template::instance()->render('../ui/login.html');
+        $f3->set('CONTENT', '../ui/login.html');
+        echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
 
     public function displayInscription(\Base $f3) {
-        echo \Template::instance()->render('../ui/register.html');
+        $f3->set('CONTENT', '../ui/register.html');
+        echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
 }

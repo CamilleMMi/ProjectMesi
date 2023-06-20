@@ -11,7 +11,7 @@
     <hr>
 
     <br>
-    <small><i>Posté le {{@post.post_date}}</i></small>
+    <small><i>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</i></small>
 </fieldset>
 
 <br>
@@ -21,10 +21,10 @@
 
 <h2>Commentaires</h2>
 <form action="" class="form-group" method="POST" id="form">
-[pseudo]
-<label for="body">Commentaire</label>
-<textarea class="form-control" id="body" name="body" rows="5" cols="33">Ecrire un commentaire</textarea>
-<button class="btn btn-success" type="submit">Envoyer</button>
+    [pseudo]
+    <label for="body">Commentaire</label>
+    <textarea class="form-control" id="body" name="body" rows="5" cols="33">Ecrire un commentaire</textarea>
+    <button class="btn btn-success" type="submit">Envoyer</button>
 </form>
 
 <div id="status"></div>
@@ -38,7 +38,10 @@
         <div class="form-group">
             <b>{{@commentaire.user.pseudo}}</b>
             <p class="form-control" id="body" name="body" rows="5" cols="33">{{@commentaire.body}}</p>
-            <i>Posté le {{@commentaire.date}}</i>
+            <small>posté le {{ date('d/m/Y',strtotime(@commentaire.date))}}</small>
+            <check if="{{@commentaire.user._id == @USER._id }}">
+                <true><button class="delete btn btn-danger" value="{{@commentaire._id}}"><i class="bi bi-trash3-fill"></i></button></true>
+            </check>
         </div>
     </repeat>
 </div>
@@ -69,5 +72,13 @@
         }
         fetchOperations();
     })
+
+    buttons_delete = document.getElementsByClassName("delete");
+    for(let i = 0 ; i < buttons_delete.length ; i++) {
+        buttons_delete[i].addEventListener("click", function() {
+            //Utiliser bootbox pour confirmer
+            console.log("hey!!");
+        })
+    }
 </script>
 

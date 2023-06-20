@@ -89,7 +89,7 @@ class PostsController extends Controller {
     }
 
     public function create_post(\Base $f3) {
-        $f3->set('CONTENT', '../ui/creer_post.html');
+        $f3->set('CONTENT', '../ui/public/creer_post.html');
         echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
 
@@ -98,7 +98,7 @@ class PostsController extends Controller {
         $comments = CommentaireRepository::instance()->find(['post = ?', $f3->PARAMS['post']], ["order"=>"id DESC"]);
         $f3->set('post', $picture);
         $f3->set('commentaires', $comments?$comments->castAll():[]);
-        $f3->set('CONTENT', '../ui/picture.html');
+        $f3->set('CONTENT', '../ui/public/picture.html');
         //$f3->set('CONTENTJS', 'views/home/home.js');
         echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
@@ -106,7 +106,7 @@ class PostsController extends Controller {
     public function edit(\Base $f3) {
         $picture = PostsRepository::instance()->getById($f3->PARAMS['post']);
         $f3->set('post', $picture);
-        $f3->set('CONTENT', '../ui/edit_post.html');
+        $f3->set('CONTENT', '../ui/public/edit_post.html');
         //$f3->set('CONTENTJS', 'views/home/home.js');
         echo \Template::instance()->render('../ui/base_template.html', 'text/html');
     }
