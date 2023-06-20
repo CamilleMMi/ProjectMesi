@@ -80,12 +80,10 @@ class PostsController extends Controller {
     }
 
     public function delete_post(\Base $f3) {
-        $post = new PostsRepository;
         $userid = $f3->SESSION['userid'];
-        $postid = $f3->PARAMS['post'];
+        $postid = $f3->POST['post_id'];
 
-        $post->delete($postid);
-        $f3->reroute('/mygallery');
+        PostsRepository::instance()->delete($postid);
     }
 
     public function create_post(\Base $f3) {

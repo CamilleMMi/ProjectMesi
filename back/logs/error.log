@@ -1,0 +1,3 @@
+[20-Jun-2023 11:47:03 Europe/Paris] HTTP 404 (GET /favicon.ico)
+[20-Jun-2023 11:47:03 Europe/Paris] [C:/wamp64/projet_mesi/back/vendor/bcosca/fatfree-core/base.php:1827] Base->error()
+[20-Jun-2023 11:47:03 Europe/Paris] [C:/wamp64/projet_mesi/back/index.php:23] Base->run()

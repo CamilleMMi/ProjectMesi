@@ -15,8 +15,34 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="/post/{{@post.id}}" class="btn btn-info">Voir plus</a>
                 <a href="/post/{{@post.id}}/edit" class="btn btn-warning">Modifier</a>
-                <a href="/post/{{@post.id}}/delete" class="btn btn-danger">Supprimer</a>
+                <button value="{{@post.id}}" class="delete btn btn-danger">Supprimer</a>
             </div>
         </div>
     </repeat>
 </div>
+
+<script>
+    buttons_delete = document.getElementsByClassName("delete");
+    for(let i = 0 ; i < buttons_delete.length ; i++) {
+        buttons_delete[i].addEventListener("click", function() {
+            console.log("hey!!");
+            //Bootbox pour confirmer
+            bootbox.confirm({
+                title: 'Êtes-vous sûr de supprimer ce post ?',
+                message: 'Vous ne pouvez pas revenir en arrière si vous confirmer',
+                callback: function (result) {
+                    if(result==true){
+                        $.ajax({
+                            url:'/post/delete_post',
+                            data:{post_id: buttons_delete[i].value},
+                            type:'POST',
+                            success: function(data) {
+                                buttons_delete[i].parentNode.innerHTML = `SUPPRIMER`;
+                            }
+                        });
+                    }
+                }
+            });
+        })
+    }
+</script>
