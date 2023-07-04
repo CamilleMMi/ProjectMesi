@@ -3,12 +3,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow: auto;
 }
 
 .row {
     width: 35% !important;
+    margin: auto;
 }
 
 .col {
@@ -29,8 +31,7 @@ body {
     text-align: left;
 }
 
-.form-group input[type="email"],
-.form-group input[type="password"] {
+.form-group input {
     width: 100%;
     padding: 8px;
     border: 1px solid #CCCCCC;

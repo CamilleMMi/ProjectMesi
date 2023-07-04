@@ -58,6 +58,7 @@ class PostsController extends Controller {
         $f3->set('UPLOADS', $folder);
 
         //unlink previous post's picture
+        if(!($f3->POST['picture'] == null))
         $postfound = $post->getById($postid);
         $picture = $postfound->picture;
         if($picture) {
@@ -74,7 +75,9 @@ class PostsController extends Controller {
             }
         );
 
-        $post->updatePostImage($postid, array_keys($files)[0]);
+        if(array_keys($files)[0] != null) {
+            $post->updatePostImage($postid, array_keys($files)[0]);
+        }
 
         $f3->reroute('/post/' . $postid);
     }

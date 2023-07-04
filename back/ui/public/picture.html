@@ -9,7 +9,7 @@
         </true>
     </check>
 
-    <div class="bg-light p-3 description_post">
+    <div class="bg-white p-3 description_post">
         <div class="description_post_info">
             <h3>{{@post.title}}</h3>
             <p><img src="../{{@post.user.photo_profile}}" width="45" height="45"> Par <a href="/{{@post.user.pseudo}}/profil">{{@post.user.pseudo}}</a></p>
@@ -36,7 +36,7 @@
     <div class="p-2">
         <div class="row">
             <div class="d-flex align-items-center justify-content-end col">
-                <img src="../{{@USER.photo_profile}}" width="50">
+                <img src="../{{@USER.photo_profile}}" width="50" height="50">
             </div>
             <div class="col-11 text-left">
                 <b>{{@USER.pseudo}}</b>
@@ -91,7 +91,7 @@
         const formdata = new FormData(form);
 
         const fetchOperations = async() => {
-            status.innerHTML = `<i style="color: blue">En cours...</i>`;
+            status.innerHTML = `<p class="btn btn-info">En cours...</p>`;
 
             let response = await fetch('/post/' + {{@post._id}} + '/send_comment',
                 {
@@ -99,7 +99,7 @@
                     body: formdata
                 });
             if (response.ok) {
-                status.innerHTML = `<b style="color: green">Post crées !</b>`;
+                status.innerHTML = `<p class="btn btn-success">Post créé !</p>`;
                 console.log(response.url);
                 window.location.href = response.url;
             }
@@ -116,6 +116,17 @@
             bootbox.confirm({
                 title: 'Êtes-vous sûr de supprimer votre commentaire ?',
                 message: 'Vous ne pouvez pas revenir en arrière si vous confirmer',
+                centerVertical: true,
+                buttons: {
+                    confirm: {
+                        label: 'Oui',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'Annuler',
+                        className: 'btn-danger'
+                    }
+                },
                 callback: function (result) {
                     if(result==true){
                         $.ajax({

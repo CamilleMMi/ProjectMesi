@@ -1,28 +1,64 @@
-<h1>Mon compte</h1>
-<form action="" method="POST" id="form">
-    <fieldset>
 
-        <img src="{{@user.photo_profile}}" width="100" height="100">
-        <br><small>Photo de profile actuelle</small>
-        <br>
+<div class="d-flex justify-content-center">
+    <div class="bg-white p-3 rounded w-50">
+        <h1>Mon compte</h1>
+        <form action="" method="POST" id="form">
+                <img src="{{@user.photo_profile}}" width="100" height="100">
+                <br><small>Photo de profile actuelle</small>
 
-        <label for="photo_profile">Modifier la photo de profile</label>
-        <input type="file" id="photo_profile" name="photo_profile">
-        <br>
-        <label for="email">Email</label>
-        <input type="mail" id="email" name="email" value="{{ @user.email }}">
-        <br>
-        <a href="#">Modifier mon mot de passe</a>
-        <br>
-        <input type="submit" value="mettre à jour">
-    </fieldset>
-</form>
+                <div class="form-group">
+                    <input type="file" class="border-0" id="photo_profile" name="photo_profile">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ @user.email }}">
+                </div>
+
+                <div class="form-group">
+                    <a href="#">Modifier mon mot de passe</a>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="nom">Nom</label>
+                      <input type="text" class="form-control" id="nom" name="nom" value="{{ @user.nom }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="prenom">Prénom</label>
+                      <input type="text" class="form-control" id="prenom" name="prenom" value="{{ @user.prenom }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date_naissance">Naissance</label>
+                    <input type="date" class="w-100" id="date_naissance" name="date_naissance" value="{{ @user.date_naissance }}">
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" cols="33">{{@user.description}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="link">Lien</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><i class="bi bi-link-45deg"></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="link" name="link" value="{{@user.link}}">
+                    </div>
+                </div>
+                <input class="w-100 btn btn-sm btn-primary" type="submit" value="Mettre à jour">
+        </form>
+    </div>
+</div>
 
 <div id="status"></div>
 
 <script>
-    
-
 const form = document.getElementById("form");
 const status = document.getElementById("status");
 
@@ -32,7 +68,7 @@ form.addEventListener('submit', function(e) {
     const formdata = new FormData(form);
 
     const fetchOperations = async() => {
-        status.innerHTML = `<i style="color: blue">En cours...</i>`;
+        status.innerHTML = `<p class="btn btn-info">En cours...</p>`;
 
         let response = await fetch('/update',
             {
@@ -40,12 +76,12 @@ form.addEventListener('submit', function(e) {
                 body: formdata
             });
         if (response.ok) {
-            status.innerHTML = `<b style="color: green">Mis à jour !</b>`;
+            status.innerHTML = `<p class="btn btn-success">Post créé !</p>`;
+            location.reload();
         }
         else { console.log(response.status); }
     }
 
     fetchOperations();
 })
-
 </script>

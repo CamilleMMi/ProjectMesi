@@ -19,10 +19,12 @@ class UserController extends Controller {
         $f3->set('UPLOADS', $folder);
 
         //unlink previous pfp
-        $userfound = $user->getById($userid);
-        $pfp = $userfound->photo_profile;
-        if($pfp) {
-            unlink($pfp);
+        if(!($f3->POST['photo_profile'] == null)) {
+            $userfound = $user->getById($userid);
+            $pfp = $userfound->photo_profile;
+            if($pfp) {
+                unlink($pfp);
+            }
         }
 
         $files = $web->receive(
@@ -35,12 +37,9 @@ class UserController extends Controller {
             }
         );
 
-        $user->updatePhotoProfile($userid, array_keys($files)[0]);
-
-        /*$filename = array_keys($files)[0];
-        $user->copyfrom([
-            'photo_profile' => $filename
-        ]);*/
+        if(array_keys($files)[0] != null) {
+            $user->updatePhotoProfile($userid, array_keys($files)[0]);
+        }
 
         $f3->reroute('/');
     }

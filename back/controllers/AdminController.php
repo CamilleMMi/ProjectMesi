@@ -9,7 +9,7 @@ class AdminController extends Controller {
         $userid = $userRepo->getById($f3->PARAMS['user'])[0];
         $userRepo->updateStatut($userid);
 
-        $f3->reroute('/dashboard');
+        $f3->reroute('/admin/dashboard');
     }
 
     // DISPLAY

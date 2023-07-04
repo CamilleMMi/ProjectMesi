@@ -1,58 +1,114 @@
-<h1>Modifier le post N°{{@post._id}}</h1>
-<form action="" method="POST" id="form">
-    <fieldset>
-        <legend>Modifier</legend>
-        <br>
+<div class="d-flex justify-content-center">
+    <div class="bg-white p-2 rounded w-50">
+        <h1>Modifier le post N°{{@post._id}}</h1>
+        <form action="" method="POST" id="form">
+            <fieldset>
+                <input value="{{@post._id}}" hidden id="id_post" />
 
-        <input value="{{@post._id}}" hidden id="id_post">
+                <check if="{{@post.picture}}">
+                    <true><img src="../../{{@post.picture}}" /></true>
+                </check>
 
-        <check if="{{@post.picture}}">
-            <true><img src="../../{{@post.picture}}"></true>
-        </check>
+                <div class="form-group">
+                    <label for="picture">Choisir un fichier (png, jpeg, gif)</label>
+                    <input class="border-0" type="file" id="picture" name="picture" value="../../{{@post.picture}}"/>
+                </div>
 
-        <label for="picture">Choisir un fichier (png, jpeg, gif)</label>
-        <input type="file" id="picture" name="picture">
-<br>
-        <label for="title">Titre</label>
-        <input type="text" id="title" name="title" value="{{@post.title}}">
-<br>
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="5" cols="33">{{@post.description}}</textarea>
-        <br>
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="title" value="{{@post.title}}" />
+                </div>
 
-        <input type="submit" value="Poster">
-    </fieldset>
-</form>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" cols="33">{{@post.description}}</textarea>
+                </div>
+                <input class="btn btn-primary w-100" type="submit" value="Mettre à jour" />
+            </fieldset>
+        </form>
+    </div>
+</div>
+<style>
+    .bg-white {
+        background-color: #F9EBEB;
+        padding: 20px;
+        border-radius: 5px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .bg-white img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .bg-white label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .bg-white input[type="file"],
+    .bg-white input[type="text"],
+    .bg-white textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .bg-white input[type="submit"] {
+        display: block;
+        width: auto;
+        padding: 8px 20px;
+        background-color: #E24957;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+
+    .bg-white input[type="submit"]:hover {
+        background-color: #EA7783;
+    }
+
+    #status {
+        margin-top: 10px;
+    }
+</style>
 
 <div id="status"></div>
 
 <script>
-
     const form = document.getElementById("form");
     const status = document.getElementById("status");
-    
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
-    
+
         const formdata = new FormData(form);
-    
-        const fetchOperations = async() => {
-            status.innerHTML = `<i style="color: blue">En cours...</i>`;
-    
-            let response = await fetch('/post/' + document.getElementById("id_post").value + '/update',
+
+        const fetchOperations = async () => {
+            status.innerHTML = `<p class="btn btn-info">En cours...</p>`;
+
+            let response = await fetch(
+                "/post/" + document.getElementById("id_post").value + "/update",
                 {
-                    method: 'POST',
-                    body: formdata
-                });
+                    method: "POST",
+                    body: formdata,
+                }
+            );
             if (response.ok) {
-                status.innerHTML = `<b style="color: green">Post crées !</b>`;
+                status.innerHTML = `<p class="btn btn-success">Post créé !</p>`;
                 console.log(response.url);
                 window.location.href = response.url;
+            } else {
+                console.log(response.status);
             }
-            else { console.log(response.status); }
-        }
-    
+        };
+
         fetchOperations();
-    })
-    
-    </script>
+    });
+</script>

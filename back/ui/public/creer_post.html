@@ -1,52 +1,60 @@
-<h1>Créer un post</h1>
-<form action="" method="POST" id="form">
-    <fieldset>
-        <legend>Nouveau post</legend>
-        <br>
+<div class="d-flex justify-content-center">
+    <div class="bg-white p-3 rounded w-50">
+        <h1>Créer un post</h1>
+        <form action="" method="POST" id="form">
+                <div class="form-group">
+                    <label for="picture">Choisir un fichier (png, jpeg, gif)</label>
+                    <input type="file" id="picture" name="picture" class="border-0">
+                </div>
 
-        <label for="picture">Choisir un fichier (png, jpeg, gif)</label>
-        <input type="file" id="picture" name="picture">
-<br>
-        <label for="title">Titre</label>
-        <input type="text" id="title" name="title">
-<br>
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="5" cols="33"></textarea>
-        <br>
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="title">
+                </div>
 
-        <input type="submit" value="Poster">
-    </fieldset>
-</form>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" cols="33"></textarea>
+                </div>
 
-<div id="status"></div>
+                <div id="status"></div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary w-100" type="submit" value="Poster">
+                </div>
+        </form>
+
+    </div>
+</div>
+<style>
+
+</style>
 
 <script>
-
     const form = document.getElementById("form");
     const status = document.getElementById("status");
-    
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-    
+
         const formdata = new FormData(form);
-    
+
         const fetchOperations = async() => {
-            status.innerHTML = `<i style="color: blue">En cours...</i>`;
-    
-            let response = await fetch('/post/upload',
-                {
-                    method: 'POST',
-                    body: formdata
-                });
+            status.innerHTML = `<p class="btn btn-info">En cours...</p>`;
+
+            let response = await fetch('/post/upload', {
+                method: 'POST',
+                body: formdata
+            });
+
             if (response.ok) {
-                status.innerHTML = `<b style="color: green">Post crées !</b>`;
+                status.innerHTML = `<p class="btn btn-success">Post créé !</p>`;
                 console.log(response.url);
                 window.location.href = response.url;
+            } else {
+                console.log(response.status);
             }
-            else { console.log(response.status); }
         }
-    
         fetchOperations();
-    })
-    
-    </script>
+    });
+</script>

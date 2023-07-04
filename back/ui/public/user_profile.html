@@ -9,6 +9,9 @@
         </div>
         <div class="col-10">
             <h3>{{@user.pseudo}}</h3>
+            <p>{{@user.description}}</p>
+
+            <div><i class="bi bi-link-45deg"></i> {{@user.link}}</div>
         </div>
       </div>
     </div>
@@ -16,22 +19,23 @@
 
 <hr>
 
-<h4>Gallerie de {{@user.pseudo}}</h4>
+<h4>Gallerie</h4>
 <check if="{{@posts}}">
-    <false><p style="color: grey">Aucun post</p></false>
+    <false>
+        <p style="color: grey">Aucun post</p>
+    </false>
     <true>
         <div class="row">
             <repeat group="{{ @posts }}" value="{{ @post }}">
                 <div class="col-sm-12 col-lg-3 mt-4">
                     <a href="/post/{{@post._id}}" class="h-100 list_post">
-                        <div class="card h-100 d-flex align-items-center">
+                        <div class="card h-100 d-flex align-items-center p-3">
                             <check if="{{@post.picture}}">
-                                <true><img src="../{{@post.picture}}" width="100" height="100"></true>
+                                <true><img src="../{{@post.picture}}" height="100" class="mb-1"></true>
                             </check>
                             <h2>{{@post.title}}</h2>
                             <p>{{@post.description}}</p>
-                            <p><small>Posté le {{@post.post_date}}</small></p>
-                            <a href="/post/{{@post._id}}">Voir plus</a>
+                            <p><small>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</small></p>
                         </div>
                     </a>
                 </div>

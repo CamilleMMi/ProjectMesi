@@ -1,26 +1,34 @@
 <h1>Tout mes posts</h1>
 
 <check if="{{@posts}}">
-    <false><p style="color: grey">Vous n'avez pas encore poster quelque chose.</p></false>
-</check>
-<div class="list">
-    <repeat group="{{ @posts }}" value="{{ @post }}">
-        <div>
-            <check if="{{@post.picture}}">
-                <true><img src="../{{@post.picture}}" width="100" height="100"></true>
-            </check>
-            <h2>{{@post.title}}</h2>
-            <p>{{@post.description}}</p>
-            <p><small>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</small></p>
+    <false>
+        <p style="color: grey">Vous n'avez pas encore poster quelque chose.</p>
+    </false>
+    <true>
+        <div class="row">
+            <repeat group="{{ @posts }}" value="{{ @post }}">
+                <div class="col-sm-12 col-lg-3 mt-4">
+                    <a href="/post/{{@post._id}}" class="h-100 list_post">
+                        <div class="card h-100 d-flex align-items-center p-3">
+                            <check if="{{@post.picture}}">
+                                <true><img src="../{{@post.picture}}" height="100"></true>
+                            </check>
+                            <h2>{{@post.title}}</h2>
+                            <p>{{@post.description}}</p>
+                            <p><small>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</small></p>
 
-            <div class="btn-group modif_creator" role="group" aria-label="Basic example">
-                <a href="/post/{{@post.id}}" class="btn btn-info">Voir plus</a>
-                <a href="/post/{{@post.id}}/edit" class="btn btn-warning">Modifier</a>
-                <button value="{{@post.id}}" class="delete btn btn-danger">Supprimer</a>
-            </div>
+                            <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                <a href="/post/{{@post.id}}" class="btn rounded-left btn-info"><i class="bi bi-eye-fill"></i></a>
+                                <a href="/post/{{@post.id}}/edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                <button value="{{@post.id}}" class="delete btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </repeat>
         </div>
-    </repeat>
-</div>
+    </true>
+</check>
 
 <script>
     buttons_delete = document.getElementsByClassName("delete");
@@ -31,6 +39,17 @@
             bootbox.confirm({
                 title: 'Êtes-vous sûr de supprimer ce post ?',
                 message: 'Vous ne pouvez pas revenir en arrière si vous confirmer',
+                centerVertical: true,
+                buttons: {
+                    confirm: {
+                        label: 'Oui',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'Annuler',
+                        className: 'btn-danger'
+                    }
+                },
                 callback: function (result) {
                     if(result==true){
                         $.ajax({
@@ -38,7 +57,7 @@
                             data:{post_id: buttons_delete[i].value},
                             type:'POST',
                             success: function(data) {
-                                buttons_delete[i].parentNode.innerHTML = `SUPPRIMER`;
+                                buttons_delete[i].parentNode.innerHTML = `<p class="btn btn-secondary">SUPPRIMER</p>`;
                             }
                         });
                     }
