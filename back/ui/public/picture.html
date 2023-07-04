@@ -1,49 +1,84 @@
-<check if="{{@post.picture}}">
-    <true><img src="../{{@post.picture}}"></true>
-</check>
 
-<h1>Post N°<span id="post_id">{{@post._id}}</span></h1>
+<!-- POST -->
+<div>
+    <check if="{{@post.picture}}">
+        <true>
+            <div class="p-4">
+                <img src="../{{@post.picture}}" width="40%">
+            </div>
+        </true>
+    </check>
 
-<fieldset>
-    <legend><h3>{{@post.title}}</h3></legend>
-    <p>{{@post.description}}</p>
+    <div class="bg-light p-3 description_post">
+        <div class="description_post_info">
+            <h3>{{@post.title}}</h3>
+            <p><img src="../{{@post.user.photo_profile}}" width="45" height="45"> Par <a href="/{{@post.user.pseudo}}/profil">{{@post.user.pseudo}}</a></p>
+            <p>{{@post.description}}</p>
+        </div>
 
-    <hr>
+        <hr>
 
-    <br>
-    <small><i>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</i></small>
-</fieldset>
+        <small class="text-center">Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</small>
+        <div class="icons_post">
+            <div class="icon"><b><i class="bi bi-heart-fill"></i> {{@post.like_amount}}</b> </div>
+            <div class="icon"><b><i class="bi bi-eye-fill"></i> {{@post.view_amount}}</b></div>
+            <div class="icon"><b><i class="bi bi-chat-dots-fill"></i> {{@post.view_amount}}</b></div>
+        </div>
+    </div>
+</div>
 
-<br>
-<b>Like : {{@post.like_amount}}</b> | <b>Vues : {{@post.view_amount}}</b>
 
 <br><hr>
 
-<h2>Commentaires</h2>
+
+<!-- COMMENTAIRES -->
 <form action="" class="form-group" method="POST" id="form">
-    [pseudo]
-    <label for="body">Commentaire</label>
-    <textarea class="form-control" id="body" name="body" rows="5" cols="33">Ecrire un commentaire</textarea>
-    <button class="btn btn-success" type="submit">Envoyer</button>
+    <div class="p-2">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-end col">
+                <img src="../{{@USER.photo_profile}}" width="50">
+            </div>
+            <div class="col-11 text-left">
+                <b>{{@USER.pseudo}}</b>
+                <textarea id="body" name="body" class="form-control ml-1 shadow-none textarea"></textarea>
+            </div>
+        </div>
+        <div class="mt-2 text-right">
+            <button class="btn btn-success btn-sm shadow-none" type="submit">Envoyer</button>
+        </div>
+    </div>
 </form>
 
 <div id="status"></div>
 
-<hr>
-
 <!-- Liste de tous les commentaires -->
 
 <div id="liste_commentaires">
-    <repeat group="{{ @commentaires }}" value="{{ @commentaire }}">
-        <div class="form-group">
-            <b>{{@commentaire.user.pseudo}}</b>
-            <p class="form-control" id="body" name="body" rows="5" cols="33">{{@commentaire.body}}</p>
-            <small>posté le {{ date('d/m/Y',strtotime(@commentaire.date))}}</small>
-            <check if="{{@commentaire.user._id == @USER._id }}">
-                <true><button class="delete btn btn-danger" value="{{@commentaire._id}}"><i class="bi bi-trash3-fill"></i></button></true>
-            </check>
-        </div>
-    </repeat>
+    <check if="{{@commentaires}}">
+        <false><p><i>Aucun commentaire, Soyez le premier !</i></p></false>
+        <true>
+            <repeat group="{{ @commentaires }}" value="{{ @commentaire }}">
+                <div class="p-2">
+                    <div class="row">
+                        <div class="d-flex align-items-center justify-content-end col">
+                            <img src="../{{@commentaire.user.photo_profile}}" width="50" height="50">
+                        </div>
+
+                        <div class="col-11 text-left">
+                            <b>{{@commentaire.user.pseudo}}</b>
+                            <small>posté le {{ date('d/m/Y',strtotime(@commentaire.date))}}</small>
+                            <p class="form-control w-100 shadow-none">{{@commentaire.body}}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <check if="{{@commentaire.user._id == @USER._id }}">
+                            <true><button class="delete btn btn-danger btn-sm shadow-none" value="{{@commentaire._id}}">Supprimer</button></true>
+                        </check>
+                    </div>
+                </div>
+            </repeat>
+        </true>
+    </check>
 </div>
 
 <script>
@@ -58,7 +93,7 @@
         const fetchOperations = async() => {
             status.innerHTML = `<i style="color: blue">En cours...</i>`;
 
-            let response = await fetch('/post/' + document.getElementById("post_id").textContent + '/send_comment',
+            let response = await fetch('/post/' + {{@post._id}} + '/send_comment',
                 {
                     method: 'POST',
                     body: formdata

@@ -11,8 +11,9 @@
             </check>
             <h2>{{@post.title}}</h2>
             <p>{{@post.description}}</p>
-            <p><small>Posté le {{@post.post_date}}</small></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <p><small>Posté le {{date('d/m/Y',strtotime(@post.post_date))}}</small></p>
+
+            <div class="btn-group modif_creator" role="group" aria-label="Basic example">
                 <a href="/post/{{@post.id}}" class="btn btn-info">Voir plus</a>
                 <a href="/post/{{@post.id}}/edit" class="btn btn-warning">Modifier</a>
                 <button value="{{@post.id}}" class="delete btn btn-danger">Supprimer</a>

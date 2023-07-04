@@ -1,25 +1,41 @@
-<img src="../{{@user.photo_profile}}" width="100" height="100"><br>
-<p>{{@user.pseudo}}</p>
-<hr>
-<p>{{@user.description}}</p>
-<br>
+<div class="card mb-3">
+    <div class="card-img-top"></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+            <img src="../{{@user.photo_profile}}" width="100" height="100" id="icon_user">
+            <p>{{@user.role}}</p>
+            <small>Inscrit le {{ date('d/m/Y',strtotime(@user.created_at))}}</small>
+        </div>
+        <div class="col-10">
+            <h3>{{@user.pseudo}}</h3>
+        </div>
+      </div>
+    </div>
+</div>
+
 <hr>
 
-<h2>Gallerie de {{@user.pseudo}}</h2>
+<h4>Gallerie de {{@user.pseudo}}</h4>
 <check if="{{@posts}}">
     <false><p style="color: grey">Aucun post</p></false>
-</check>
-<div class="list">
-    <repeat group="{{ @posts }}" value="{{ @post }}">
-        <div>
-            <check if="{{@post.picture}}">
-                <true><img src="../{{@post.picture}}" width="100" height="100"></true>
-            </check>
-            <h2>{{@post.title}}</h2>
-            <p>{{@post.description}}</p>
-            <p><small>Posté le {{@post.post_date}}</small></p>
-            <a href="/post/{{@post._id}}">Voir plus</a>
-            <hr>
+    <true>
+        <div class="row">
+            <repeat group="{{ @posts }}" value="{{ @post }}">
+                <div class="col-sm-12 col-lg-3 mt-4">
+                    <a href="/post/{{@post._id}}" class="h-100 list_post">
+                        <div class="card h-100 d-flex align-items-center">
+                            <check if="{{@post.picture}}">
+                                <true><img src="../{{@post.picture}}" width="100" height="100"></true>
+                            </check>
+                            <h2>{{@post.title}}</h2>
+                            <p>{{@post.description}}</p>
+                            <p><small>Posté le {{@post.post_date}}</small></p>
+                            <a href="/post/{{@post._id}}">Voir plus</a>
+                        </div>
+                    </a>
+                </div>
+            </repeat>
         </div>
-    </repeat>
-</div>
+    </true>
+</check>

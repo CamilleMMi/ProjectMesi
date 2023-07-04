@@ -1,0 +1,75 @@
+body {
+    background-color: #F9EBEB !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.row {
+    width: 35% !important;
+}
+
+.col {
+    background-color: #FFFFFF;
+    padding: 10%;
+    text-align: center;
+    border-radius: 5px;
+    border-width: 6px;
+    border-style: solid;
+    border-image: linear-gradient( to left, #AB3076, #E24957) 1;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    display: block; /* ca c ce qui centre comme pour le register */
+    width: auto;
+    padding: 8px 20px;
+    background-color: #E24957; /* donc memo ca c quand on hover pas */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+input[type="submit"]:hover {
+    background-color: #EA7783; /* la on hover donc change le fond a peine  */
+    color: white;
+}
+
+.register-link {
+    display: block;
+    margin-top: 10px;
+    width: auto;
+    padding: 8px 20px;
+    background-color: #AB3076; /* pareil que submit */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    background-color: #C8378A;
+    color: white;
+    text-decoration: none;
+}

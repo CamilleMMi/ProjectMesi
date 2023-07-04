@@ -14,9 +14,12 @@ class Posts extends Model
     protected $table = 'posts';
     protected $fieldConf = [
         'user' => [
-            'belongs-to-one' => 'Models\User',
+            'belongs-to-one' => User::class,
             'nullable' => false,
         ],
+        /*'favoris' => [
+            'has-many' => 'Models\User'
+        ],*/
         'title' => [
             'type' => Schema::DT_VARCHAR256,
             'nullable' => false

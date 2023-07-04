@@ -53,6 +53,9 @@ class User extends Model
     ];*/
 
     protected $fieldConf = [
+        /*'favoris' => [
+            'has-many' => Posts::class
+        ],*/
         'nom' => [
             'type' => Schema::DT_VARCHAR256,
             'nullable' => true
@@ -129,5 +132,6 @@ class User extends Model
         @unlink($this->photo_profile);
         return $nom;
     }
+
 
 }

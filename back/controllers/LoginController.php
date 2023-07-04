@@ -9,8 +9,8 @@ class LoginController extends Controller {
 
         // Check out if the user wrote the right password
         if (!(password_verify($f3->POST['password'], $user->password))) {
+            \Flash::instance()->addMessage('Mauvais mot de passe et email, veuillez recommencer.', 'danger');
             $f3->reroute('/');
-            echo "<p style='color: red'>mdp ou mail pas bon</p>";
         }
         else {
             $f3->SESSION['userid'] = $user->_id;
@@ -59,12 +59,10 @@ class LoginController extends Controller {
 
     // DISPLAY
     public function displayLogin(\Base $f3) {
-        $f3->set('CONTENT', '../ui/login.html');
-        echo \Template::instance()->render('../ui/base_template.html', 'text/html');
+        echo \Template::instance()->render('../ui/login.html', 'text/html');
     }
 
     public function displayInscription(\Base $f3) {
-        $f3->set('CONTENT', '../ui/register.html');
-        echo \Template::instance()->render('../ui/base_template.html', 'text/html');
+        echo \Template::instance()->render('../ui/register.html', 'text/html');
     }
 }
